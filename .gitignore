@@ -1,1 +1,9 @@
-node_modules
+.env
+.dockerignore
+.pnpm-store/
+dist/
+# ignore docker file since that should be included in
+# https://github.com/ltfschoen/MUDTemplate instead
+docker/
+node_modules/
+snippets/
