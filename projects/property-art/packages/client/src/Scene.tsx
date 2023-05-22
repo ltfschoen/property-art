@@ -10,10 +10,10 @@ export function Scene({ background = 'white', children, ...props }) {
 
   return (
     <>
-      {/* <color attach="background" args={[background]} />
+      <color attach="background" args={[background]} />
       <ambientLight />
       <directionalLight position={[10, 10, -15]} castShadow shadow-bias={-0.0001} shadow-mapSize={1024} />
-      <Environment preset="city" /> */}
+      <Environment preset="city" />
       <group
         matrixAutoUpdate={false}
         onUpdate={(self) => (self.matrix = props.matrix)}

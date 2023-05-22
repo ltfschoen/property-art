@@ -17,33 +17,28 @@ import {
   // useTexture
 } from '@react-three/drei'
 import { Menu, Button } from '@mantine/core'
-import * as ICONS from '@tabler/icons-react'
 import { create } from 'zustand'
 // import { useComponentValue, useEntityQuery } from "@latticexyz/react";
 // import { getComponentValueStrict, Has } from "@latticexyz/recs";
 // import { useMUD } from "./MUDContext";
 // import { useKeyboardMovement } from "./useKeyboardMovement";
+
 import { Scene } from './Scene';
+// note: the compressed version with smaller .glb file size messes up the pavillion
+// import { Scene } from './SceneCompressed';
 
 const matrix = new THREE.Matrix4()
 const positions = {
-  Top: [0, 10, 0], Bottom: [0, -10, 0], Left: [-10, 0, 0], Right: [10, 0, 0], Back: [0, 0, -10], Front: [0, 0, 10],
+  Top: [0, 10, 0], Bottom: [0, -10, 0],
+  Left: [-10, 0, 0], Right: [10, 0, 0],
+  Back: [0, 0, -10], Front: [0, 0, 10],
   Perspective: [4, 4, 4], Orthogonal: [4, 4, 4],
 }
 const useStore = create((set) => ({
-  perspective: 'Perspective',
-  orthogonal: 'Orthogonal',
-  // top: 'Back',
-  // middle: 'Top',
-  // bottom: 'Right',
-  top: 'Top',
-  bottom: 'Bottom',
-  left: 'Left',
-  right: 'Right',
-  back: 'Back',
-  front: 'Front',
+  // FIXME - restructure since this does not scale easily to multiple property art 
+  view1: 'Perspective',
+  view2: 'Perspective',
   setPanelView: (which, view) => {
-    console.log('which, view: ', which, view);
     set({ [which]: view });
   },
 }))
@@ -114,8 +109,7 @@ const useStore = create((set) => ({
 // };
 
 export const App = () => {
-  const [ref, view1, view2, view3] = useRefs();
-  console.log('refs: ', ref, view1, view2, view3)
+  const [view1, view2] = useRefs();
   return (
     <div className="container">
       {/* <div className="text">
@@ -126,18 +120,16 @@ export const App = () => {
         <Link ref={view2}>Buy Property Art 2</Link>
         <div ref={view2} className="view scale" />
       </div> */}
-      <Panel ref={view1} which="perspective" />
-      <Panel ref={view2} which="perspective" />
       <Canvas shadows frameloop="demand" eventSource={document.getElementById('root')} className="canvas">
         <View index={1} track={view1}>
           {/* <Bg /> */}
           {/* <Common color="lightblue" /> */}
-          <PanelCameraSwitcher which="perspective" />
+          <PanelCameraSwitcher which="view1" />
           <PivotControls lineWidth={3} depthTest={false} displayValues={false} scale={2} matrix={matrix} />
-          <Scene background="lightblue" matrix={matrix} scale={10} position={[150, -40, 230]} rotation={[0, 0.15, -0.15]}>
-            <AccumulativeShadows temporal frames={100} position={[0, -0.4, 0]} scale={14} alphaTest={0.85} color="orange" colorBlend={0.5}>
+          <Scene background="lightblue" matrix={matrix} scale={10} position={[150, -150, -730]} rotation={[0, 0.15, -0.15]}>
+            {/* <AccumulativeShadows temporal frames={100} position={[0, -0.4, 0]} scale={14} alphaTest={0.85} color="orange" colorBlend={0.5}>
               <RandomizedLight amount={8} radius={8} ambient={0.5} position={[5, 5, -10]} bias={0.001} />
-            </AccumulativeShadows>
+            </AccumulativeShadows> */}
           </Scene>
           <CameraShake intensity={0.5} />
           <OrbitControls makeDefault />
@@ -145,31 +137,26 @@ export const App = () => {
         <View index={2} track={view2}>
           {/* <Bg /> */}
           {/* <Common color="lightblue" /> */}
-          <PanelCameraSwitcher which="perspective" />
+          <PanelCameraSwitcher which="view2" />
           <PivotControls lineWidth={3} depthTest={false} displayValues={false} scale={2} matrix={matrix} />
-          <Scene background="lightblue" matrix={matrix} scale={10} position={[110, -60, 200]} rotation={[0, 0.15, -0.1]}>
-            <AccumulativeShadows temporal frames={100} position={[0, -0.4, 0]} scale={14} alphaTest={0.85} color="orange" colorBlend={0.5}>
+          <Scene background="lightblue" matrix={matrix} scale={10} position={[110, -260, 1030]} rotation={[0, 0.15, -0.1]}>
+            {/* <AccumulativeShadows temporal frames={100} position={[0, -0.4, 0]} scale={14} alphaTest={0.85} color="orange" colorBlend={0.5}>
               <RandomizedLight amount={8} radius={8} ambient={0.5} position={[5, 5, -10]} bias={0.001} />
-            </AccumulativeShadows>
+            </AccumulativeShadows> */}
           </Scene>
           <CameraShake intensity={0.5} />
           <OrbitControls makeDefault />
         </View>
         <Preload all />
       </Canvas>
+      <Panel ref={view1} which="view1" />
+      <Panel ref={view2} which="view2" />
     </div>
   );
 };
 
-const Panel = forwardRef((props, fRef) => {
-  const { which } = props;
-  // if (fRef.current === undefined) {
-  //   console.log('fRef is undefined')
-  //   return;
-  // }
+const Panel = forwardRef(({ which }, fRef) => {
   const value = useStore((state) => state[which])
-  console.log('value: ', value);
-  console.log('fRef: ', fRef);
   const setPanelView = useStore((state) => state.setPanelView)
 
   return (
@@ -179,17 +166,17 @@ const Panel = forwardRef((props, fRef) => {
           <Button>{value}</Button>
         </Menu.Target>
         <Menu.Dropdown onClick={(e) => setPanelView(which, e.target.innerText)}>
-          <Menu.Item icon={<ICONS.IconHomeLeft size={14} />}>Perspective</Menu.Item>
-          <Menu.Item icon={<ICONS.IconHomeRight size={14} />}>Orthogonal</Menu.Item>
-          <Menu.Item icon={<ICONS.IconHomeUp size={14} />}>Front</Menu.Item>
-          <Menu.Item icon={<ICONS.IconHomeDown size={14} />}>Back</Menu.Item>
-          <Menu.Item icon={<ICONS.IconArrowBigTop size={14} />}>Top</Menu.Item>
-          <Menu.Item icon={<ICONS.IconArrowBigDown size={14} />}>Bottom</Menu.Item>
-          <Menu.Item icon={<ICONS.IconArrowBigLeft size={14} />}>Left</Menu.Item>
-          <Menu.Item icon={<ICONS.IconArrowBigRight size={14} />}>Right</Menu.Item>
+          <Menu.Item>Perspective</Menu.Item>
+          <Menu.Item>Orthogonal</Menu.Item>
+          <Menu.Item>Front</Menu.Item>
+          <Menu.Item>Back</Menu.Item>
+          <Menu.Item>Top</Menu.Item>
+          <Menu.Item>Bottom</Menu.Item>
+          <Menu.Item>Left</Menu.Item>
+          <Menu.Item>Right</Menu.Item>
         </Menu.Dropdown>
       </Menu>
-    </div>
+    </div >
   )
 })
 Panel.displayName = 'Panel';
@@ -207,7 +194,6 @@ Panel.displayName = 'Panel';
 
 function PanelCameraSwitcher({ which }) {
   const view = useStore((state) => state[which])
-  console.log('value2: ', view);
   if (view === 'Perspective') {
     return <PerspectiveCamera makeDefault position={[4, 4, 4]} fov={25} />
   } else if (view === 'Orthogonal') {

@@ -88,3 +88,8 @@
         * https://blog.logrocket.com/configure-3d-models-react-three-fiber/
 * EZKL video https://www.youtube.com/watch?v=tp22vStPVG8
 * EZKL docs https://docs.ezkl.xyz/
+
+### Troubleshooting
+
+* `Uncaught Error: Element type is invalid: expected a string (for built-in components)`
+  * This means you're trying to use a an icon from https://tabler-icons.io/ that doesn't exist
