@@ -50,6 +50,10 @@
 
 ### Maintenance
 
+* Update to latest version of MUD v2 canary. Run the following in both the client/ and contracts/ folders
+  ```
+  pnpm mud set-version -v canary
+  ```
 * Check space used by testnet
   ```
   du -sh /root/.foundry/anvil/
