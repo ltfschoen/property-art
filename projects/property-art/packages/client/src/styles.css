@@ -53,18 +53,24 @@ body {
     height: 100%;
 }
 
-.container>.panel {
-    position: relative;
+.panel {
+    /* position: relative; */
     padding: 20px;
-    /* }
 
-.view { */
     margin: 0.2em;
     width: 400px;
     height: 200px;
     display: inline-block;
     overflow: hidden;
 }
+
+/* .view {
+    margin: 0.2em;
+    width: 400px;
+    height: 200px;
+    display: inline-block;
+    overflow: hidden;
+} */
 
 .hidden {
     visibility: hidden;

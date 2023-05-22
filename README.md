@@ -47,10 +47,17 @@
     ```bash
     npx gltfjsx Bondi.glb
     ```
+* Compression
+  * https://threejs.org/docs/#examples/en/loaders/DRACOLoader
+  * https://github.com/donmccurdy/glTF-Transform
+    ```bash
+    gltf-transform optimize ./projects/property-art/packages/client/public/Bondi.glb ./projects/property-art/packages/client/public/BondiCompressed.glb --texture-compress webp
+    ```
+  * https://meshoptimizer.org/gltf/
 
 ### Maintenance
 
-* Update to latest version of MUD v2 canary. Run the following in both the client/ and contracts/ folders
+* Update to latest version of MUD v2 canary. Run the following in both the client/ and contracts/ folders, or `pnpm mud:up`
   ```
   pnpm mud set-version -v canary
   ```

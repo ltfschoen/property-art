@@ -1,4 +1,3 @@
-import * as THREE from 'three'
 import React, { useRef } from 'react'
 import {
   Environment,
@@ -6,9 +5,7 @@ import {
   useGLTF,
 } from '@react-three/drei'
 
-export const matrix = new THREE.Matrix4()
-
-export function Model({ background = 'white', children, ...props }) {
+export function Scene({ background = 'white', children, ...props }) {
   const { nodes, materials } = useGLTF('/Bondi.glb')
 
   return (
@@ -19,10 +16,11 @@ export function Model({ background = 'white', children, ...props }) {
       <Environment preset="city" /> */}
       <group
         matrixAutoUpdate={false}
-        onUpdate={(self) => (self.matrix = matrix)}
+        onUpdate={(self) => (self.matrix = props.matrix)}
         {...props}
         dispose={null}
       >
+        {/* <Center> */}
         <mesh geometry={nodes.water.geometry} material={materials['Material.038']} position={[0, 0.22, -28.85]} scale={[20, 1, 20]} />
         <group position={[-0.1, 0.74, -29.51]} scale={[20, 1, 20]}>
           <mesh geometry={nodes.Plane001.geometry} material={materials['Material.037']} />
@@ -218,6 +216,7 @@ export function Model({ background = 'white', children, ...props }) {
           <mesh geometry={nodes.wahallaCourt_51.geometry} material={materials['Material.033']} />
           <mesh geometry={nodes.wahallaCourt_52.geometry} material={materials.colBlue} />
         </group>
+        {/* </Center> */}
         {children}
       </group>
     </>
