@@ -7,3 +7,7 @@ dist/
 docker/
 node_modules/
 snippets/
+# ignore models since too large for Github
+projects/property-art/packages/client/public/*.glb
+projects/property-art/packages/client/public/*.gitf
+

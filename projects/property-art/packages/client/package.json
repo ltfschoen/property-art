@@ -13,21 +13,26 @@
   },
   "dependencies": {
     "@ethersproject/providers": "^5.7.2",
-    "@latticexyz/common": "2.0.0-alpha.1.177+5ec509dd",
-    "@latticexyz/dev-tools": "2.0.0-alpha.1.177+5ec509dd",
-    "@latticexyz/network": "2.0.0-alpha.1.177+5ec509dd",
-    "@latticexyz/react": "2.0.0-alpha.1.177+5ec509dd",
-    "@latticexyz/recs": "2.0.0-alpha.1.177+5ec509dd",
-    "@latticexyz/schema-type": "2.0.0-alpha.1.177+5ec509dd",
-    "@latticexyz/std-client": "2.0.0-alpha.1.177+5ec509dd",
-    "@latticexyz/utils": "2.0.0-alpha.1.177+5ec509dd",
-    "@latticexyz/world": "2.0.0-alpha.1.177+5ec509dd",
-    "@react-three/fiber": "^8.12.0",
+    "@latticexyz/common": "1.42.0",
+    "@latticexyz/dev-tools": "1.42.0",
+    "@latticexyz/network": "1.42.0",
+    "@latticexyz/react": "1.42.0",
+    "@latticexyz/recs": "1.42.0",
+    "@latticexyz/schema-type": "1.42.0",
+    "@latticexyz/std-client": "1.42.0",
+    "@latticexyz/utils": "1.42.0",
+    "@latticexyz/world": "1.42.0",
+    "@react-three/fiber": "^8.12.1",
+    "@react-three/drei": "9.65.3",
+    "@types/three": "0.150.1",
     "@wagmi/chains": "^0.2.22",
     "contracts": "workspace:*",
     "ethers": "^5.7.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-use-refs": "1.0.1",
+    "styled-components": "5.3.9",
+    "three": "0.151.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.6",
@@ -37,5 +42,11 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "vite": "^4.2.1",
     "wait-port": "^1.0.4"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
