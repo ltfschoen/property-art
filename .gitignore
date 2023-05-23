@@ -8,6 +8,8 @@ docker/
 node_modules/
 snippets/
 # ignore models since too large for Github
-projects/property-art/packages/client/public/*.glb
+# projects/property-art/packages/client/public/*.glb
+# only ignore large file since using compressed
+projects/property-art/packages/client/public/Bondi.glb
 projects/property-art/packages/client/public/*.gitf
 .DS_Store

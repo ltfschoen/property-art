@@ -43,8 +43,8 @@
     * [ ] smart contract to give royalty to seller using thirdweb
     * [ ] smart contract should have associated NFT link on Filecoin IPFS
 
-
 * Decentralize Autonomous World
+  * [ ] Generate IPFS URI for your metadata. ipfs://bafyreib4pff766vhpbxbhjbqqnsh5emeznvujayjj4z2iu533cprgbz23m/metadata.json
   * [ ] Deploy Property Art NFT to Filecoin IPFS using NFT.Storage as long-term storage service designed for off-chain NFT data (like metadata, images, and other assets) using NFT.Storage in a few lines of code to fully decentralize the Autonomous World.
     * Alternatively use Web3.Storage as storage helpers to decentralize your Autonomous World.
       https://nft.storage/
@@ -141,6 +141,14 @@
 * Similar websites
   * RealT https://realt.co/marketplace/ (note: Property Art is not making a financial asset like Realt)
   * Sominum Space https://opensea.io/assets/ethereum/0x913ae503153d9a335398d0785ba60a2d63ddb4e2/1091
+* Thirdweb
+  * https://portal.thirdweb.com/react
+* NFT.Storage
+  * https://github.com/nftstorage/nft.storage/tree/main/packages/client
+  * Paste REACT_APP_NFT_STORAGE_API_KEY from https://nft.storage/manage/ in ./projects/property-art/packages/client/.env
+  * Upload file https://www.bezkoder.com/react-file-upload-axios/
+  * Store https://nft.storage/docs/
+  * Retrieve NFT ERC-1155 https://nft.storage/docs/how-to/retrieve/
 
 ### Troubleshooting
 
