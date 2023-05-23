@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import React, { forwardRef, ReactElement, useState } from "react";
+import React, { forwardRef, ReactElement, useContext, useState } from "react";
 import useRefs from 'react-use-refs'
 import { extend, Canvas, Color, ThreeElements, useThree } from "@react-three/fiber";
 import {
@@ -22,6 +22,10 @@ import { create } from 'zustand'
 // import { getComponentValueStrict, Has } from "@latticexyz/recs";
 // import { useMUD } from "./MUDContext";
 // import { useKeyboardMovement } from "./useKeyboardMovement";
+
+// https://github.com/dubiella/mud-template-read-vite-metamask
+import { walletContext } from './WalletConnection'
+
 import Header from './components/Header';
 import { Scene } from './Scene';
 // note: the compressed version with smaller .glb file size messes up the pavillion
@@ -170,10 +174,13 @@ extend({ Details })
 // };
 
 export const App = () => {
+  const { wallet } = useContext(walletContext);
+
   const [view1, view2] = useRefs();
   return (
     <div className="nav-custom">
       <Header />
+      <span>Wallets connected: {wallet && wallet.accounts.length || 0}</span>
       <div className="container">
 
         <Canvas shadows frameloop="demand" eventSource={document.getElementById('root')} className="canvas">
