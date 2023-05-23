@@ -27,7 +27,7 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    top: 60px;
+    /* top: 60px; */
 }
 
 .panel {
@@ -137,6 +137,19 @@ body {
 
 .details-address-item {
     position: relative;
+}
+
+.wallet-connect {
+    margin-top: 0px;
+}
+
+.wallet-click {
+    margin-top: 50px;
+}
+
+.wallet-notification {
+    color: rgb(171, 5, 5);
+    font-size: 1em;
 }
 
 /* override bootstrap nav styles */
