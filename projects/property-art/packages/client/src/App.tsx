@@ -22,7 +22,7 @@ import { create } from 'zustand'
 // import { getComponentValueStrict, Has } from "@latticexyz/recs";
 // import { useMUD } from "./MUDContext";
 // import { useKeyboardMovement } from "./useKeyboardMovement";
-
+import Header from './components/Header';
 import { Scene } from './Scene';
 // note: the compressed version with smaller .glb file size messes up the pavillion
 // import { Scene } from './SceneCompressed';
@@ -63,6 +63,25 @@ const Link = forwardRef(({ children }, fRef) => {
 })
 // https://docs.pmnd.rs/react-three-fiber/api/objects#using-3rd-party-objects-declaratively
 extend({ Link })
+
+const Address = forwardRef(({ children }, fRef) => {
+  return (
+    <span className="buy-address">{children}</span>
+  )
+})
+extend({ Address })
+
+const Details = forwardRef(({ children }, fRef) => {
+  return (
+    <div className="details-address">
+      <div className="details-address-item">Price (OP): 1m</div>
+      <div className="details-address-item">Borrow Max. (%): 300</div>
+      <div className="details-address-item">ROI (%): 10</div>
+      <div className="details-address-item">Royalty (%): 5</div>
+    </div>
+  )
+})
+extend({ Details })
 
 // const Plane = (props: ThreeElements["mesh"]) => {
 //   return (
@@ -132,43 +151,52 @@ extend({ Link })
 export const App = () => {
   const [view1, view2] = useRefs();
   return (
-    <div className="container">
-      <Canvas shadows frameloop="demand" eventSource={document.getElementById('root')} className="canvas">
-        <View index={1} track={view1}>
-          {/* <Bg /> */}
-          {/* <Common color="lightblue" /> */}
-          <PanelCameraSwitcher which="view1" />
-          <PivotControls lineWidth={3} depthTest={false} displayValues={false} scale={2} matrix={matrix} />
-          <Scene background="lightblue" matrix={matrix} scale={10} position={[150, -150, -730]} rotation={[0, 0.15, -0.15]}>
-            {/* <AccumulativeShadows temporal frames={100} position={[0, -0.4, 0]} scale={14} alphaTest={0.85} color="orange" colorBlend={0.5}>
+    <div className="nav-custom">
+      <Header />
+      <div className="container">
+
+        <Canvas shadows frameloop="demand" eventSource={document.getElementById('root')} className="canvas">
+          <View index={1} track={view1}>
+            {/* <Bg /> */}
+            {/* <Common color="lightblue" /> */}
+            <PanelCameraSwitcher which="view1" />
+            <PivotControls lineWidth={3} depthTest={false} displayValues={false} scale={2} matrix={matrix} />
+            <Scene background="lightblue" matrix={matrix} scale={10} position={[150, -150, -730]} rotation={[0, 0.15, -0.15]}>
+              {/* <AccumulativeShadows temporal frames={100} position={[0, -0.4, 0]} scale={14} alphaTest={0.85} color="orange" colorBlend={0.5}>
               <RandomizedLight amount={8} radius={8} ambient={0.5} position={[5, 5, -10]} bias={0.001} />
             </AccumulativeShadows> */}
-          </Scene>
-          <CameraShake intensity={0.5} />
-          <OrbitControls makeDefault />
-        </View>
-        <View index={2} track={view2}>
-          {/* <Bg /> */}
-          {/* <Common color="lightblue" /> */}
-          <PanelCameraSwitcher which="view2" />
-          <PivotControls lineWidth={3} depthTest={false} displayValues={false} scale={2} matrix={matrix} />
-          <Scene background="lightblue" matrix={matrix} scale={10} position={[110, -260, 1030]} rotation={[0, 0.15, -0.1]}>
-            {/* <AccumulativeShadows temporal frames={100} position={[0, -0.4, 0]} scale={14} alphaTest={0.85} color="orange" colorBlend={0.5}>
+            </Scene>
+            <CameraShake intensity={0.5} />
+            <OrbitControls makeDefault />
+          </View>
+          <View index={2} track={view2}>
+            {/* <Bg /> */}
+            {/* <Common color="lightblue" /> */}
+            <PanelCameraSwitcher which="view2" />
+            <PivotControls lineWidth={3} depthTest={false} displayValues={false} scale={2} matrix={matrix} />
+            <Scene background="lightblue" matrix={matrix} scale={10} position={[110, -260, 1030]} rotation={[0, 0.15, -0.1]}>
+              {/* <AccumulativeShadows temporal frames={100} position={[0, -0.4, 0]} scale={14} alphaTest={0.85} color="orange" colorBlend={0.5}>
               <RandomizedLight amount={8} radius={8} ambient={0.5} position={[5, 5, -10]} bias={0.001} />
             </AccumulativeShadows> */}
-          </Scene>
-          <CameraShake intensity={0.5} />
-          <OrbitControls makeDefault />
-        </View>
-        <Preload all />
-      </Canvas>
-      <div className="text">
-        <Link ref={view1}>Buy</Link>
-        <Panel ref={view1} which="view1" />
-      </div>
-      <div className="text">
-        <Link ref={view2}>Buy</Link>
-        <Panel ref={view2} which="view2" />
+            </Scene>
+            <CameraShake intensity={0.5} />
+            <OrbitControls makeDefault />
+          </View>
+          <Preload all />
+        </Canvas>
+        <div className="text">
+          <Details ref={view1} />
+          <Link ref={view1}>Buy</Link>
+          <Panel ref={view1} which="view1" />
+          <Address ref={view1}>54 Campbell Pde Bondi Beach</Address>
+        </div>
+        <div className="spacer"></div>
+        <div className="text">
+          <Details ref={view1} />
+          <Link ref={view2}>Buy</Link>
+          <Panel ref={view2} which="view2" />
+          <Address ref={view1}>280 Campbell Pde Bondi Beach</Address>
+        </div>
       </div>
     </div>
   );

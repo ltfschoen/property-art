@@ -27,6 +27,7 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
+    top: 60px;
 }
 
 .panel {
@@ -57,12 +58,13 @@ body {
 
 .text {
     line-height: 1em;
-    /* text-align: left; */
     font-size: 1em !important;
     word-break: break-word;
-    /* position: absolute; */
-    /* top: 10px; */
     left: 250px;
+}
+
+.spacer {
+    padding: 20px;
 }
 
 .buy-link {
@@ -72,17 +74,56 @@ body {
     color: white;
     word-break: break-word;
     position: absolute;
-    left: 290px;
-    /* width: 100%; */
-    /* height: 20px; */
+    left: 280px;
 
     min-width: 90px;
     /* prevent wrapping */
     text-decoration: none;
     background-color: rgb(102, 201, 15);
     border-radius: 5px;
-    margin-top: 20px;
+    margin-top: 140px;
     padding: 10px;
+    z-index: 2;
+}
+
+.buy-address {
+    position: absolute;
+    left: 65px;
+    background-color: rgb(218, 224, 226);
+    opacity: 75%;
+    padding: 5px;
+    margin-top: 190px;
+}
+
+.details-address {
+    position: absolute;
+    display: block;
+    color: rgb(168, 168, 168);
+    border: rgb(155, 155, 155) 1px solid;
+    padding: 5px;
+    clear: both;
+    width: 175px;
+    left: 195px;
+    opacity: 60%;
+    margin-top: 10px;
+}
+
+.details-address-item {
+    position: relative;
+}
+
+/* override bootstrap nav styles */
+.bg-inverse {
+    background-color: #6a7377 !important;
+}
+
+/* override camera view button */
+.mantine-g7194 {
+    background-color: rgb(168, 168, 168);
+}
+
+.mantine-g7194:hover {
+    background-color: rgb(133, 131, 131);
 }
 
 @media only screen and (max-width: 800px) {
