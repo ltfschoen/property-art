@@ -1,5 +1,8 @@
 # Property Art (MUD v2 DApp)
-============
+
+## Screenshot
+
+![Screenshot](./screenshots/property-art-screenshot.png)
 
 ## Table of Contents
 
@@ -47,9 +50,20 @@
     ```bash
     npx gltfjsx Bondi.glb
     ```
+* Compression
+  * https://threejs.org/docs/#examples/en/loaders/DRACOLoader
+  * https://github.com/donmccurdy/glTF-Transform
+    ```bash
+    gltf-transform optimize ./projects/property-art/packages/client/public/Bondi.glb ./projects/property-art/packages/client/public/BondiCompressed.glb --texture-compress webp
+    ```
+  * https://meshoptimizer.org/gltf/
 
 ### Maintenance
 
+* Update to latest version of MUD v2 canary. Run the following in both the client/ and contracts/ folders, or `pnpm mud:up`
+  ```
+  pnpm mud set-version -v canary
+  ```
 * Check space used by testnet
   ```
   du -sh /root/.foundry/anvil/
@@ -77,3 +91,8 @@
         * https://blog.logrocket.com/configure-3d-models-react-three-fiber/
 * EZKL video https://www.youtube.com/watch?v=tp22vStPVG8
 * EZKL docs https://docs.ezkl.xyz/
+
+### Troubleshooting
+
+* `Uncaught Error: Element type is invalid: expected a string (for built-in components)`
+  * This means you're trying to use a an icon from https://tabler-icons.io/ that doesn't exist
