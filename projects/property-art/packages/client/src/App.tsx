@@ -68,7 +68,7 @@ const Link = forwardRef(({ children }, fRef) => {
 // https://docs.pmnd.rs/react-three-fiber/api/objects#using-3rd-party-objects-declaratively
 extend({ Link })
 
-const Preview = forwardRef(({ children }, fRef) => {
+const Preview = forwardRef(({ src, children }, fRef) => {
   const [hovered, hover] = useState(false)
   return (
     <div>
@@ -83,7 +83,7 @@ const Preview = forwardRef(({ children }, fRef) => {
       <img
         onClick={() => hover(false)}
         onMouseOut={() => hover(false)}
-        src="/pavillion-cropped.jpeg" style={{ position: 'absolute', left: 180, width: 400, zIndex: 3, display: hovered ? 'block' : 'none' }} />
+        src={src} style={{ position: 'absolute', left: 180, width: 400, zIndex: 3, display: hovered ? 'block' : 'none' }} />
     </div>
   )
 })
@@ -180,7 +180,7 @@ export const App = () => {
   return (
     <div className="nav-custom">
       <Header />
-      <span>Wallets connected: {wallet && wallet.accounts.length || 0}</span>
+      {/* <span>Wallets connected: {wallet && wallet.accounts.length || 0}</span> */}
       <div className="container">
 
         <Canvas shadows frameloop="demand" eventSource={document.getElementById('root')} className="canvas">
@@ -214,7 +214,7 @@ export const App = () => {
         </Canvas>
         <div className="text">
           <Details ref={view1} />
-          <Preview ref={view1}>Preview RWA</Preview>
+          <Preview ref={view1} src="/54-campbell-pde.jpeg">Preview RWA</Preview>
           <Link ref={view1}>Buy NFT Art</Link>
           <Panel ref={view1} which="view1" />
           <Address ref={view1}>54 Campbell Pde Bondi Beach</Address>
@@ -222,13 +222,13 @@ export const App = () => {
         <div className="spacer"></div>
         <div className="text">
           <Details ref={view2} />
-          <Preview ref={view2}>Preview RWA</Preview>
+          <Preview ref={view2} src="/pavillion-cropped.jpeg">Preview RWA</Preview>
           <Link ref={view2}>Buy NFT Art</Link>
           <Panel ref={view2} which="view2" />
           <Address ref={view2}>280 Campbell Pde Bondi Beach</Address>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

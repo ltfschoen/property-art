@@ -50,52 +50,46 @@ const WalletConnection = ({ children }: Props,) => {
 
     return (
         <>
-            <Box sx={{ backgroundColor: 'background.paper' }}>
-                <Container>
-                    <Grid container direction="row" justifyContent="space-between" alignItems="center" sx={{ p: 2, mb: 4 }}>
-                        {/* <Typography variant="h6">
-                        MUD Increment Count
-                    </Typography> */}
-
-                        {wallet.accounts.length > 0 ? (
-                            <>
-                                <Button
-                                    variant="outlined"
-                                    id="basic-button"
-                                    aria-controls={open ? 'basic-menu' : undefined}
-                                    aria-haspopup="true"
-                                    aria-expanded={open ? 'true' : undefined}
-                                    onClick={handleClick}
-                                    startIcon={<SvgIcon component={MetaMaskIcon} viewBox="0 0 300 300" />}
-                                >
-                                    {(wallet.accounts[0] as string)?.slice(0, 5)}...{(wallet.accounts[0] as string)?.slice(-5)}
-                                </Button>
-                            </>
-                        ) : (
-                            <>
-                                <Button variant="outlined" onClick={handleConnect} startIcon={<SvgIcon component={MetaMaskIcon} viewBox="0 0 300 300" />} disabled={!isMetaMask}>
-                                    connect
-                                </Button>
-                            </>
-                        )}
-                    </Grid>
-                </Container>
-            </Box>
+            <Container>
+                {wallet.accounts.length > 0 ? (
+                    <div className="wallet-click">
+                        <Button
+                            variant="outlined"
+                            id="basic-button"
+                            aria-controls={open ? 'basic-menu' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? 'true' : undefined}
+                            onClick={handleClick}
+                            startIcon={<SvgIcon component={MetaMaskIcon} viewBox="0 0 300 300" />}
+                        >
+                            {(wallet.accounts[0] as string)?.slice(0, 5)}...{(wallet.accounts[0] as string)?.slice(-5)}
+                        </Button>
+                    </div>
+                ) : (
+                    <div className="wallet-click">
+                        <Button variant="outlined" onClick={handleConnect} startIcon={<SvgIcon component={MetaMaskIcon} viewBox="0 0 300 300" />} disabled={!isMetaMask}>
+                            connect
+                        </Button>
+                    </div>
+                )}
+            </Container>
             <Container>
                 {isMetaMask ? (
                     wallet.accounts.length > 0 ? (
-                        <>
+                        <div className="wallet-connect">
                             <walletContext.Provider value={{ wallet }}>{children}</walletContext.Provider>
-                        </>
+                        </div>
                     ) : (
-                        <>
-                            Please connect to Metamask
-                        </>
+                        <div className="wallet-connect">
+                            <span className="wallet-notification">Please connect to Metamask</span>
+                            <walletContext.Provider value={{ wallet }}>{children}</walletContext.Provider>
+                        </div>
                     )
                 ) : (
-                    <>
-                        Please Install Metamask
-                    </>
+                    <div className="wallet-connect">
+                        <span className="wallet-notification">Please Install Metamask</span>
+                        <walletContext.Provider value={{ wallet }}>{children}</walletContext.Provider>
+                    </div>
                 )}
             </Container>
             <Menu
