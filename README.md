@@ -28,7 +28,7 @@
 * General
   * [x] Generated component to import .glb format model using `gltfjsx`
   * [x] Updated to latest LatticeXYZ MUD v2 from `2.0.0-alpha` to `1.42.0` to resolve cache issues
-  * [ ] Integrate MetaMask using https://github.com/dubiella/mud-template-read-vite-metamask
+  * [x] Integrate MetaMask using https://github.com/dubiella/mud-template-read-vite-metamask
 * Creative use of MUD
   * [x] Integrates with generating MUD v2 stack with Docker https://github.com/ltfschoen/MUDTemplate
   * [x] `@react-three-fiber` with multiple scenes for each Property NFT Art listing with associated property highlighted in pink
