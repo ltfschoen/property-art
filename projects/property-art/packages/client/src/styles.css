@@ -70,11 +70,11 @@ body {
 .buy-link {
     line-height: 1em;
     text-align: center;
-    font-size: 2em;
+    font-size: 1.25em;
     color: white;
     word-break: break-word;
     position: absolute;
-    left: 280px;
+    left: 320px;
 
     min-width: 90px;
     /* prevent wrapping */
@@ -84,6 +84,12 @@ body {
     margin-top: 140px;
     padding: 10px;
     z-index: 2;
+}
+
+.buy-link:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(82, 171, 5);
+    text-decoration: none;
 }
 
 .buy-address {
@@ -106,6 +112,27 @@ body {
     left: 195px;
     opacity: 60%;
     margin-top: 10px;
+}
+
+.preview-address {
+    position: absolute;
+    color: rgb(255, 255, 255);
+    width: 100px;
+    left: 320px;
+    opacity: 60%;
+
+    min-width: 130px;
+    /* prevent wrapping */
+    text-decoration: none;
+    background-color: rgb(201, 161, 15);
+    border-radius: 5px;
+    margin-top: 95px;
+    padding: 10px;
+    z-index: 3;
+}
+
+.preview-address:hover {
+    background-color: rgb(220, 184, 53);
 }
 
 .details-address-item {

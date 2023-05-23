@@ -14,7 +14,7 @@ import {
   AccumulativeShadows,
   Environment,
   // Center,
-  // useTexture
+  useTexture
 } from '@react-three/drei'
 import { Menu, Button } from '@mantine/core'
 import { create } from 'zustand'
@@ -63,6 +63,27 @@ const Link = forwardRef(({ children }, fRef) => {
 })
 // https://docs.pmnd.rs/react-three-fiber/api/objects#using-3rd-party-objects-declaratively
 extend({ Link })
+
+const Preview = forwardRef(({ children }, fRef) => {
+  const [hovered, hover] = useState(false)
+  return (
+    <div>
+      <a
+        href="#"
+        className="preview-address"
+        onPointerOver={() => hover(true)}
+        onBlur={() => hover(false)}
+      >
+        {children}
+      </a>
+      <img
+        onClick={() => hover(false)}
+        onMouseOut={() => hover(false)}
+        src="/pavillion-cropped.jpeg" style={{ position: 'absolute', left: 180, width: 400, zIndex: 3, display: hovered ? 'block' : 'none' }} />
+    </div>
+  )
+})
+extend({ Preview })
 
 const Address = forwardRef(({ children }, fRef) => {
   return (
@@ -174,7 +195,7 @@ export const App = () => {
             {/* <Common color="lightblue" /> */}
             <PanelCameraSwitcher which="view2" />
             <PivotControls lineWidth={3} depthTest={false} displayValues={false} scale={2} matrix={matrix} />
-            <Scene background="lightblue" matrix={matrix} scale={10} position={[110, -260, 1030]} rotation={[0, 0.15, -0.1]}>
+            <Scene background="lightblue" matrix={matrix} scale={10} position={[110, -50, 100]} rotation={[0, 0.15, -0.1]}>
               {/* <AccumulativeShadows temporal frames={100} position={[0, -0.4, 0]} scale={14} alphaTest={0.85} color="orange" colorBlend={0.5}>
               <RandomizedLight amount={8} radius={8} ambient={0.5} position={[5, 5, -10]} bias={0.001} />
             </AccumulativeShadows> */}
@@ -186,16 +207,18 @@ export const App = () => {
         </Canvas>
         <div className="text">
           <Details ref={view1} />
-          <Link ref={view1}>Buy</Link>
+          <Preview ref={view1}>Preview RWA</Preview>
+          <Link ref={view1}>Buy NFT Art</Link>
           <Panel ref={view1} which="view1" />
           <Address ref={view1}>54 Campbell Pde Bondi Beach</Address>
         </div>
         <div className="spacer"></div>
         <div className="text">
-          <Details ref={view1} />
-          <Link ref={view2}>Buy</Link>
+          <Details ref={view2} />
+          <Preview ref={view2}>Preview RWA</Preview>
+          <Link ref={view2}>Buy NFT Art</Link>
           <Panel ref={view2} which="view2" />
-          <Address ref={view1}>280 Campbell Pde Bondi Beach</Address>
+          <Address ref={view2}>280 Campbell Pde Bondi Beach</Address>
         </div>
       </div>
     </div>
@@ -231,26 +254,29 @@ Panel.displayName = 'Panel';
 function PanelCameraSwitcher({ which }) {
   const view = useStore((state) => state[which])
   if (view === 'Perspective') {
-    return <PerspectiveCamera makeDefault position={[4, 4, 4]} fov={25} />
+    return <PerspectiveCamera position={[4, 4, 4]} fov={25} />
   } else if (view === 'Orthogonal') {
-    return <OrthographicCamera makeDefault position={[4, 4, 4]} zoom={280} />
+    return <OrthographicCamera position={[4, 4, 4]} zoom={280} />
   } else {
-    return <OrthographicCamera makeDefault position={positions[view]} zoom={100} />
+    return <OrthographicCamera position={positions[view]} zoom={100} />
   }
 }
 
-// function Bg() {
-//   const { width, height } = useThree((state) => state.viewport)
-//   const image = useTexture(
-//     'https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-//   )
-//   return (
-//     <mesh scale={[width, height, -2]}>
-//       <planeGeometry />
-//       <meshBasicMaterial map={image} depthWrite={false} />
-//     </mesh>
-//   )
-// }
+function Bg() {
+  const { width, height } = useThree((state) => state.viewport)
+  // const image = useTexture(
+  //   'https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+  // )
+  const image = useTexture(
+    '/pavillion-cropped.jpeg'
+  )
+  return (
+    <mesh scale={[width, height, 2]}>
+      <planeGeometry />
+      <meshBasicMaterial map={image} depthWrite={false} />
+    </mesh>
+  )
+}
 
 // const Common = ({ color }) => (
 //   <>

@@ -68,10 +68,11 @@
   ```
   du -sh /root/.foundry/anvil/
   ```
-* Delete the testnet data
+* Delete the testnet data. Uses up 10Gb per 24 hrs (updating Foundry might resolve)
   ```
   rm -rf /root/.foundry/anvil/tmp
   ```
+* Update to the latest version of Foundry with `foundryup`
 
 ### Links <a id="links"></a>
 * MUD v2 https://v2.mud.dev
