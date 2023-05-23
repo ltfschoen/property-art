@@ -139,6 +139,10 @@ body {
     position: relative;
 }
 
+.wallet-connect {
+    margin-top: 50px;
+}
+
 /* override bootstrap nav styles */
 .bg-inverse {
     background-color: #6a7377 !important;
