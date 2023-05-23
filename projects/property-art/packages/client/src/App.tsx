@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import React, { forwardRef, ReactElement, useState } from "react";
 import useRefs from 'react-use-refs'
-import { Canvas, Color, ThreeElements, useThree } from "@react-three/fiber";
+import { extend, Canvas, Color, ThreeElements, useThree } from "@react-three/fiber";
 import {
   View,
   Preload,
@@ -42,6 +42,27 @@ const useStore = create((set) => ({
     set({ [which]: view });
   },
 }))
+
+const Link = forwardRef(({ children }, fRef) => {
+  // const [hovered, hover] = useState(false)
+  return (
+    <a className="buy-link" href="https://github.com/ltfschoen/property-art">{children}</a>
+    // <a
+    //   href="https://github.com/ltfschoen/property-art"
+    //   onPointerMove={(e) => {
+    //     const x = e.nativeEvent.offsetX
+    //     const y = e.nativeEvent.offsetY - e.target.offsetTop - 100
+    //     fRef.current.style.transform = `translate3d(${x}px,${y}px,0)`
+    //   }}
+    //   onPointerOver={() => hover(true)}
+    //   onPointerOut={() => hover(false)}>
+    //   {children}
+    //   <div ref={fRef} className="view" style={{ position: 'absolute', width: 200, display: hovered ? 'block' : 'none' }} />
+    // </a>
+  )
+})
+// https://docs.pmnd.rs/react-three-fiber/api/objects#using-3rd-party-objects-declaratively
+extend({ Link })
 
 // const Plane = (props: ThreeElements["mesh"]) => {
 //   return (
@@ -112,14 +133,6 @@ export const App = () => {
   const [view1, view2] = useRefs();
   return (
     <div className="container">
-      {/* <div className="text">
-        <Link ref={view1}>Buy Property Art 1</Link>
-        <div ref={view1} className="view scale" />
-      </div>
-      <div className="text">
-        <Link ref={view2}>Buy Property Art 2</Link>
-        <div ref={view2} className="view scale" />
-      </div> */}
       <Canvas shadows frameloop="demand" eventSource={document.getElementById('root')} className="canvas">
         <View index={1} track={view1}>
           {/* <Bg /> */}
@@ -149,8 +162,14 @@ export const App = () => {
         </View>
         <Preload all />
       </Canvas>
-      <Panel ref={view1} which="view1" />
-      <Panel ref={view2} which="view2" />
+      <div className="text">
+        <Link ref={view1}>Buy</Link>
+        <Panel ref={view1} which="view1" />
+      </div>
+      <div className="text">
+        <Link ref={view2}>Buy</Link>
+        <Panel ref={view2} which="view2" />
+      </div>
     </div>
   );
 };
@@ -180,17 +199,6 @@ const Panel = forwardRef(({ which }, fRef) => {
   )
 })
 Panel.displayName = 'Panel';
-
-{/* <div>
-<div className="text">
-  <Link ref={fRef}>Buy Property Art</Link>
-</div> */}
-{/* <div ref={view1} className="view scale" /> */ }
-{/* <div ref={fRef} className="panel scale" style={{ gridArea: which }}> */ }
-// if (fRef.current === null) {
-//   return <div></div>;
-// }
-// </div>
 
 function PanelCameraSwitcher({ which }) {
   const view = useStore((state) => state[which])
@@ -226,24 +234,3 @@ function PanelCameraSwitcher({ which }) {
 //     <PerspectiveCamera makeDefault fov={40} position={[0, 0, 6]} />
 //   </>
 // )
-
-// const Link = forwardRef(({ children }, fRef) => {
-//   const [hovered, hover] = useState(false)
-//   return (
-//     <a
-//       href="https://github.com/ltfschoen/property-art"
-//       onPointerMove={(e) => {
-//         const x = e.nativeEvent.offsetX
-//         const y = e.nativeEvent.offsetY - e.target.offsetTop - 100
-//         fRef.current.style.transform = `translate3d(${x}px,${y}px,0)`
-//       }}
-//       onPointerOver={() => hover(true)}
-//       onPointerOut={() => hover(false)}>
-//       {children}
-//       <div ref={fRef} className="view" style={{ position: 'absolute', width: 200, display: hovered ? 'block' : 'none' }} />
-//     </a>
-//   )
-// })
-
-
-
