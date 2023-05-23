@@ -1,6 +1,7 @@
 import React, { ReactNode, useContext, useState, createContext } from "react";
 import { Button, Container, Grid, SvgIcon, Typography, Menu, MenuItem, Box } from '@mui/material';
-import MetaMaskIcon from "./MetaMaskIcon";
+// import MetaMaskIcon from "./components/MetaMaskIcon";
+import Header from './components/Header';
 
 let injectedProvider = false;
 
@@ -47,55 +48,37 @@ const WalletConnection = ({ children }: Props,) => {
     const handleMenuClose = () => {
         setAnchorEl(null);
     };
+    console.log('WalletConnection: ', wallet, isMetaMask, open)
 
     return (
         <>
-            <Box sx={{ backgroundColor: 'background.paper' }}>
-                <Container>
-                    <Grid container direction="row" justifyContent="space-between" alignItems="center" sx={{ p: 2, mb: 4 }}>
-                        {/* <Typography variant="h6">
-                        MUD Increment Count
-                    </Typography> */}
-
-                        {wallet.accounts.length > 0 ? (
-                            <>
-                                <Button
-                                    variant="outlined"
-                                    id="basic-button"
-                                    aria-controls={open ? 'basic-menu' : undefined}
-                                    aria-haspopup="true"
-                                    aria-expanded={open ? 'true' : undefined}
-                                    onClick={handleClick}
-                                    startIcon={<SvgIcon component={MetaMaskIcon} viewBox="0 0 300 300" />}
-                                >
-                                    {(wallet.accounts[0] as string)?.slice(0, 5)}...{(wallet.accounts[0] as string)?.slice(-5)}
-                                </Button>
-                            </>
-                        ) : (
-                            <>
-                                <Button variant="outlined" onClick={handleConnect} startIcon={<SvgIcon component={MetaMaskIcon} viewBox="0 0 300 300" />} disabled={!isMetaMask}>
-                                    connect
-                                </Button>
-                            </>
-                        )}
-                    </Grid>
-                </Container>
-            </Box>
+            <Container>
+                <Header
+                    handleClick={handleClick}
+                    handleConnect={handleConnect}
+                    isMetaMask={isMetaMask}
+                    open={open}
+                    wallet={wallet}
+                />
+            </Container >
             <Container>
                 {isMetaMask ? (
                     wallet.accounts.length > 0 ? (
-                        <>
+                        <div className="wallet-connect">
                             <walletContext.Provider value={{ wallet }}>{children}</walletContext.Provider>
-                        </>
+                        </div>
                     ) : (
-                        <>
-                            Please connect to Metamask
-                        </>
+                        <div className="wallet-connect">
+                            <span>Please connect to Metamask</span>
+                            <walletContext.Provider value={{ wallet }}>{children}</walletContext.Provider>
+                        </div>
+
                     )
                 ) : (
-                    <>
-                        Please Install Metamask
-                    </>
+                    <div className="wallet-connect">
+                        <span>Please Install Metamask</span>
+                        <walletContext.Provider value={{ wallet }}>{children}</walletContext.Provider>
+                    </div>
                 )}
             </Container>
             <Menu
