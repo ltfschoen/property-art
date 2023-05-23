@@ -1,5 +1,8 @@
 # Property Art (MUD v2 DApp)
-============
+
+## Screenshot
+
+![Screenshot](./screenshots/property-art-screenshot.png)
 
 ## Table of Contents
 
