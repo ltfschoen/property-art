@@ -30,6 +30,7 @@ import Header from './components/Header';
 import { Scene } from './Scene';
 // note: the compressed version with smaller .glb file size messes up the pavillion
 // import { Scene } from './SceneCompressed';
+// import UploadFiles from './components/UploadFiles';
 
 const matrix = new THREE.Matrix4()
 const positions = {
@@ -227,6 +228,7 @@ export const App = () => {
           <Panel ref={view2} which="view2" />
           <Address ref={view2}>280 Campbell Pde Bondi Beach</Address>
         </div>
+        {/* <UploadFiles /> */}
       </div >
     </div >
   );
