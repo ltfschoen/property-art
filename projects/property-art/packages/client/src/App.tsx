@@ -207,18 +207,18 @@ export const App = () => {
         </Canvas>
         <div className="text">
           <Details ref={view1} />
-          <Preview ref={view1}>Preview</Preview>
-          <Link ref={view1}>Buy</Link>
+          <Preview ref={view1}>Preview RWA</Preview>
+          <Link ref={view1}>Buy NFT Art</Link>
           <Panel ref={view1} which="view1" />
           <Address ref={view1}>54 Campbell Pde Bondi Beach</Address>
         </div>
         <div className="spacer"></div>
         <div className="text">
-          <Details ref={view1} />
-          <Preview ref={view2}>Preview</Preview>
-          <Link ref={view2}>Buy</Link>
+          <Details ref={view2} />
+          <Preview ref={view2}>Preview RWA</Preview>
+          <Link ref={view2}>Buy NFT Art</Link>
           <Panel ref={view2} which="view2" />
-          <Address ref={view1}>280 Campbell Pde Bondi Beach</Address>
+          <Address ref={view2}>280 Campbell Pde Bondi Beach</Address>
         </div>
       </div>
     </div>

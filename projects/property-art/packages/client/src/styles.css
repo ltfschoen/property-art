@@ -70,11 +70,11 @@ body {
 .buy-link {
     line-height: 1em;
     text-align: center;
-    font-size: 2em;
+    font-size: 1.25em;
     color: white;
     word-break: break-word;
     position: absolute;
-    left: 280px;
+    left: 320px;
 
     min-width: 90px;
     /* prevent wrapping */
@@ -117,11 +117,11 @@ body {
 .preview-address {
     position: absolute;
     color: rgb(255, 255, 255);
-    width: 80px;
-    left: 275px;
+    width: 100px;
+    left: 320px;
     opacity: 60%;
 
-    min-width: 90px;
+    min-width: 130px;
     /* prevent wrapping */
     text-decoration: none;
     background-color: rgb(201, 161, 15);
