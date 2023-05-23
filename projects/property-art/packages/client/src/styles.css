@@ -117,6 +117,11 @@ body {
     background-color: #6a7377 !important;
 }
 
+.brand-text {
+    font-style: italic;
+    font-family: cursive;
+}
+
 /* override camera view button */
 .mantine-g7194 {
     background-color: rgb(168, 168, 168);
